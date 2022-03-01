@@ -58,4 +58,16 @@ public class ReqresTest {
                 .statusCode(201)
                 .body("name",is("morpheus"));
     }
+
+    @Test
+    public void registerSuccesfulTest(){
+        String data = "{ \"email\": \"eve.holt@reqres.in\", \"password\": \"pistol\" }";
+        given()
+                .contentType(ContentType.JSON)
+                .body(data)
+                .post("https://reqres.in/api/register")
+                .then()
+                .statusCode(200)
+                .body("token",is("QpwL5tke4Pnpja7X4"));
+    }
 }
