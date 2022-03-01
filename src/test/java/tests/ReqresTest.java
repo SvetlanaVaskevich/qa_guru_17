@@ -1,6 +1,7 @@
 package tests;
 
 import io.restassured.common.mapper.TypeRef;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,5 +44,18 @@ public class ReqresTest {
                 .get("https://reqres.in/api/unknown/23")
                 .then()
                 .statusCode(404);
+    }
+
+    @Test
+    public void createUserTest(){
+        String data = "{ \"name\": \"morpheus\", \"job\": \"leader\" }";
+        given()
+                .contentType(ContentType.JSON)
+                .body(data)
+                .when()
+                .post("https://reqres.in/api/users")
+                .then()
+                .statusCode(201)
+                .body("name",is("morpheus"));
     }
 }
