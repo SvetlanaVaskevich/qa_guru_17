@@ -23,6 +23,5 @@ public class ReqresUserTest {
             System.out.println(userName.get(i).get("first_name"));
             assertThat(userName.get(i).get("first_name")).isNotNull();
         }
-
     }
 }
